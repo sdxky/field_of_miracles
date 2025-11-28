@@ -140,7 +140,7 @@ public class Main {
                 {"bishkek", "moscow", "newyork", "osh"}
         };
 
-        String[] categories = {"Animals", "Cars", "Food", "City"};
+        String[] categories = {"Animals 🐾", "Cars 🚗", "Food 🍽️", "City 🌍"};
 
         boolean[][] used = new boolean[words.length][];
         for (int i = 0; i < words.length; i++) {
@@ -155,16 +155,16 @@ public class Main {
         int totalUser = 0;
         int totalComp = 0;
 
-        System.out.println("=== Start game: User vs Computer ===");
+        System.out.println("\n🎮  \u001B[34m=== START GAME: User vs Computer 🤖 ===\u001B[0m");
 
         for (int i = 0; i < rounds; i++) {
 
-            System.out.println("\n---- Round " + (i + 1) + " ----");
+            System.out.println("\n🌟 \u001B[33mROUND " + (i + 1) + "\u001B[0m 🌟");
 
             int category = rnd.nextInt(4);
             String word = selectWord(category, words, used);
 
-            System.out.println("Category: " + categories[category]);
+            System.out.println("📌 Category: " + categories[category]);
 
             int[] scores = playRound(word);
 
@@ -175,18 +175,29 @@ public class Main {
             totalComp += scores[1];
         }
 
-        System.out.println("\n-------------- Game Results --------------");
-        System.out.println("Round | User | Comp");
-        System.out.println("------+-------+-------");
+        System.out.println("\n🧾 \u001B[32m=== FINAL SCOREBOARD ===\u001B[0m");
+
+        System.out.println("╔═══════╦═══════╦═══════╗");
+        System.out.println("║ Round ║ 👤User║ 🤖Comp║");
+        System.out.println("╠═══════╬═══════╬═══════╣");
 
         for (int i = 0; i < rounds; i++) {
-            System.out.printf("  %d   |  %-5d|  %-5d%n", i + 1, userScores[i], compScores[i]);
+            System.out.printf("║   %d   ║  %-5d║  %-5d║%n", i + 1, userScores[i], compScores[i]);
         }
 
-        System.out.println("------+-------+-------");
-        System.out.printf("Total |  %-5d|  %-5d%n", totalUser, totalComp);
-        System.out.println("===========================================");
+        System.out.println("╠═══════╬═══════╬═══════╣");
+        System.out.printf("║ TOTAL ║  %-5d║  %-5d║%n", totalUser, totalComp);
+        System.out.println("╚═══════╩═══════╩═══════╝");
+
+        if (totalUser > totalComp) {
+            System.out.println("\n🏆 \u001B[32mYOU WIN! Congratulations! 🎉\u001B[0m");
+        } else if (totalUser < totalComp) {
+            System.out.println("\n💀 \u001B[31mComputer Wins! Better luck next time! 😈\u001B[0m");
+        } else {
+            System.out.println("\n🤝 \u001B[36mIt's a Draw! Well played! ⚖️\u001B[0m");
+        }
     }
+
 
     public static void tourLaunch() {
         boolean playAgain;
